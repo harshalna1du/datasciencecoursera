@@ -1,6 +1,6 @@
 # Dataset description
    The folder specdata contains one file per monitor.
-# Monitor : is a device that captures the sulphate and nitrate values and stores it by date. 
+# Monitor : is a device that captures the sulfate and nitrate values and stores it by date. 
 #           The monitors are presumably at different locations
 # Key points:           
 #   a. NA means values are not available.
@@ -13,36 +13,43 @@
 # Objective:Find the coorelation between sulphate and nitrate levels with a condition that
 #           each file must have atleast a minimum number of complete cases. And this number     
 #           is ditermined by threshold. Meaning, calculate coorelation with files that meet a minimum 
-#           the 'threshold' of data quality'. So if the Threshold is  say 150, one should have 
-#           atleast 150 complete (rows with no NA) per file.
+#           'threshold' of data quality'. So if the threshold is  say 150, one should have 
+#           atleast 150 'complete' rows with no NA per file.
 #                     
 # Approach:
-#   a.  Create a grouped data set (in a ddataframe) list number of obeservations (nobs) by file (id). This is          
+#   a.  Create a grouped data set (in a ddataframe) and list number of obeservations (nobs) by file (id). This is          
 #       Complete.R - part 2 of the programming assignment
 #   b.  Now that we know number of complete cases per file, create a data set that 
 #       meets the threshold condition. In our example of threshold of 150, in this 
 #       new dataset, keep only the ones that have nobs > 150. This data set now lists
 #       files, each of which has enough observations for calculating corelation of
-#       sulphate and nitrate leves.
+#       sulphate and nitrate levels.
 #   c.  For each file now (use a loop), calculate the corelation using the cor function in r
 #       Spend some time understanding the use paramenter that tells the function on 
-#       how NA values are treated when corelation is calculated. Remember, evven though
-#       we did choose files that have 'enough number' of complete cases, we still have 
-#       rows with incomplete cases. The use parameter will ditermine how these row will
+#       how NA values are treated when corelation is calculated. Remember, even though
+#       we did create a list of files that have 'enough number' (above threshold) of complete cases, we still have 
+#       rows with incomplete cases in each file. The use parameter will ditermine how these row will
 #       be treated.
-#   d.  As we loop through the id can calculate corelation using cor function, 
+#   d.  As we loop through the id, we calculate corelation between sufate and nitrate using cor function and 
 #       we get a number (returned by cor function) that needs to be stored in a 
 #       numeric vector (use c to concatinate).
 #   e.  At the end, we have iterated through the list and calculated the corelation for
-#       each ID (file or monitor)
+#       each ID (file representating a monitor)
 # Note on example output:
 #    a. head - shows the first some values of the numeric vector that list corelation
 #       for each file
 #    b. Summary : For our numeric vector that has corelation of sulfate and nitrate values
 #                 for each monitor, summary fuction gives us the minimum value
-#                 of corelation, quantiles, mean, and sd. To understand what this means
-#                 one will have to have a basic understanding of these terms. You tube 
-#                 is a great resource
+#                 of corelation, quantiles, mean, and sd. To appreciate what this means
+#                 one will have to have a basic understanding of these terms . Youtube 
+#                 is a great resource. 
+
+# Tips
+#     - string manipulation functions are very useful (sprintf, paste, flush.console() and print were few nifty ones I learned about)
+#     - Break down code into functions and keep functions in a separate library for easier use.
+#     - Use the RStudio debugger to step through the code. Put breakpoints and expiriment with querying the data on console.
+#     - If you have the time, digress, learn more about stats etc so that you appreciate why we are doing this.
+#     - Google everything, read multiple examples of the same topic to reinforce a concept. But don't take shortcuts!
 
   
 
